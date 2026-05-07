@@ -1,0 +1,50 @@
+.navMain{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:20px;
+    box-shadow: 10px 10px 50px black;
+    border-radius: 10px;
+    
+}
+
+.navLeft{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+.logo{
+    width: 200px;
+}
+
+.logoText{
+    font-size: 30px;
+    font-weight: bold;
+    color: darkturquoise;
+}
+.LoginRegisterButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.LoginRegisterButton button{
+    gap: 20px;
+    margin-right: 20px;
+    background-color:darkturquoise;
+    color:black;
+    font-size: larger;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;  
+}
+.LoginRegisterButton button:hover{
+    background-color:cyan;
+}
+
+.loginImage{
+    width: 200px;
+    margin-right: 20px;
+}
+

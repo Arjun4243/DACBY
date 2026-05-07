@@ -1,11 +1,16 @@
 import React from 'react'
 import './login.css'
-
+import { StoreContextCreated } from '../../StoreContext';
+import { useContext } from 'react';
 function Login() {
+
+    const {setRegisterShow} = useContext(StoreContextCreated);
+
+
     return (
         <div className='registration'>
             <h1>Register</h1>
-            <h1 className="close-btn" type="button" aria-label="Close">×</h1>
+            <h1 className="close-btn" type="button" aria-label="Close" onClick={()=>setRegisterShow(false)}>×</h1>
             <div className='registration-container'>
                  <img src='/image/registration.png' alt='registration-image' />
             <div className='form'>

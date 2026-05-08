@@ -11,7 +11,7 @@ app.use(express.json())
 
 connectDB();
 
-app.use("/api/users",userRouter)
+app.use("/api/user",userRouter)
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);

@@ -1,7 +1,7 @@
 
-import dotenv from 'dotenv/config'
+import 'dotenv/config'
 import jwt from 'jsonwebtoken'
-import userModel from '../models/userModel.js'
+import userModel from '../model/userModel.js'
 
 const authMiddleWare = (req, res, next) => {
     

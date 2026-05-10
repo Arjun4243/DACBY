@@ -16,7 +16,7 @@ function NavebarRight() {
         <div className='hover-container'>
           <img
             src="/image/Login image.webp"
-            alt="login image"
+            alt="User Profile"
             className="loginImage"
           />
           <button className='logoutButton' onClick={logouthandler}>

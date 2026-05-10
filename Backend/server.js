@@ -5,7 +5,7 @@ import userRouter from "./router/userRouter.js";
 import cors from 'cors';
 import storyRouter from './router/storyRouter.js';
 import scraperRouter from './router/scraperRouter.js';
-import {scrapeStories} from './controllers/scraperController.js';
+import {scrapeStories} from './controller/scraperController.js';
 
 
 const app = express();
@@ -23,7 +23,7 @@ app.use(cors({
 app.use(express.json())
 
 connectDB();
-
+ await scrapeStories();
 
 app.use("/api/user", userRouter)
 app.use("/api/story", storyRouter)

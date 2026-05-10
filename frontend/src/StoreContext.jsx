@@ -128,7 +128,7 @@ export const StoreContextProvider = ({ children }) => {
             window.location.reload();
         }, 3000);
 
-    })
+    }, [])
 
 
     //logout functionality up

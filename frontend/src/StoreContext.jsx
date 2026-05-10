@@ -8,7 +8,7 @@ export const StoreContextProvider = ({ children }) => {
 
     //GlobalNotification handler down
     const [globalNotificationShow, setGlobalNotificationShow] = useState({
-        show: true,
+        show: false,
         headline: "",
         image: "/image/green right.gif",
         message: ""
@@ -60,6 +60,8 @@ export const StoreContextProvider = ({ children }) => {
     message: data.message
   });
 
+  localStorage.setItem("token", data.token);
+  
   setTimeout(() => {
     setGlobalNotificationShow({
       show: false,

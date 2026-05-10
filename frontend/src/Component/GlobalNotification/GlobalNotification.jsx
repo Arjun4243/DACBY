@@ -9,13 +9,16 @@ function GlobalNotification() {
     const {globalNotificationShow}=useContext(StoreContextCreated)
   return (
 
-    <>{globalNotificationShow.show===true?
-    <div className='container'>
-        <h2>{globalNotificationShow.headline}</h2>
-        <img src={globalNotificationShow.image} alt='notificaton images ' />
-        <h3>{globalNotificationShow.message}</h3>
-
-    </div>:null}
+    <>
+      {globalNotificationShow.show === true ? (
+        <div className='notification-overlay'>
+          <div className='container'>
+            <h2>{globalNotificationShow.headline}</h2>
+            <img src={globalNotificationShow.image} alt='notificaton images ' />
+            <h3>{globalNotificationShow.message}</h3>
+          </div>
+        </div>
+      ) : null}
     </>
   )
 }

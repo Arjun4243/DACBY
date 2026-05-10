@@ -4,7 +4,7 @@ import { StoreContextCreated } from '../../StoreContext';
 import { useContext } from 'react';
 
 function Login() {
-    const { setRegisterShow, switchLoginShow, setSwitchLoginShow, registerHandler } = useContext(StoreContextCreated);
+    const { setRegisterShow, switchLoginShow, setSwitchLoginShow, registerHandler,registerhandlerChanges } = useContext(StoreContextCreated);
     return (
         <div className='registration'>
 
@@ -22,9 +22,9 @@ function Login() {
                         <button onClick={() => setSwitchLoginShow("Login")} >Login</button>
                     </div>
 
-                    {switchLoginShow === "Register" ? <div>Name: <input type='text' placeholder='Enter your name'onChange={registerHandler} name="name"/></div> : null}
-                    <div>Email: <input type='email' placeholder='Enter your email' onChange={registerHandler} name="email"/></div>
-                    <div>Password: <input type='password' placeholder='Enter your password' onChange={registerHandler} name="password"/></div>
+                    {switchLoginShow === "Register" ? <div>Name: <input type='text' placeholder='Enter your name'onChange={registerhandlerChanges} name="name"/></div> : null}
+                    <div>Email: <input type='email' placeholder='Enter your email' onChange={registerhandlerChanges} name="email"/></div>
+                    <div>Password: <input type='password' placeholder='Enter your password' onChange={registerhandlerChanges} name="password"/></div>
 
                     <button type='submit' className='submit-button'>Submit</button>
                 

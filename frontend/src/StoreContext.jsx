@@ -1,4 +1,6 @@
+
 import { createContext, useState, useCallback } from "react";
+
 
 export const StoreContextCreated = createContext();
 
@@ -52,29 +54,41 @@ export const StoreContextProvider = ({ children }) => {
         // Parse the JSON body into a JS object
         const data = await response.json();
 
-      if (data.status === true) {
-  setGlobalNotificationShow({
-    show: true,
-    headline: data.headline,
-    image: data.image,
-    message: data.message
-  });
+        if (data.status === true) {
+            setGlobalNotificationShow({
+                show: true,
+                headline: data.headline,
+                image: data.image,
+                message: data.message
+            });
 
-  localStorage.setItem("token", data.token);
-  
-  setTimeout(() => {
-    setGlobalNotificationShow({
-      show: false,
-      headline: "",
-      image: "",
-      message: ""
-    });
-  }, 3000);
-}
+            localStorage.setItem("token", data.token);
 
+            setTimeout(() => {
+                setGlobalNotificationShow({
+                    show: false,
+                    headline: "",
+                    image: "",
+                    message: ""
+                });
+            }, 3000);
+        } else {
+            setGlobalNotificationShow({
+                show: true,
+                headline: data.headline,
+                image: data.image,
+                message: data.message
+            });
 
-
-
+            setTimeout(() => {
+                setGlobalNotificationShow({
+                    show: false,
+                    headline: "",
+                    image: "",
+                    message: ""
+                });
+            }, 3000)
+        }
 
 
 

@@ -10,7 +10,12 @@ export const registerUser = async (req, res) => {
     // Check if user already exists
     const existingUser = await userModel.findOne({ email: req.body.email });
     if (existingUser) {
-      return res.status(400).json({ status: false, message: "User already exists" });
+      return res.status(400).json({ 
+        status: false,
+        NotificationShow: true, 
+        headline: "Registration failed",
+        image:"/image/registraction_cross.webp" ,
+        message: "User already exists, " });
     }
 
     // Hash password
@@ -33,6 +38,7 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({
       status: true,
+      NotificationShow: true, 
       headline: "Registration successful",
       image: "/image/green right.gif",
       message: "You have been registered successfully!",

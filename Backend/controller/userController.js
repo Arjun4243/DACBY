@@ -1,6 +1,8 @@
 import userModel from "../model/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import 'dotenv/config';
+import mongoose from "mongoose";
 
 // REGISTER
 export const registerUser = async (req, res) => {
@@ -8,7 +10,7 @@ export const registerUser = async (req, res) => {
     // Check if user already exists
     const existingUser = await userModel.findOne({ email: req.body.email });
     if (existingUser) {
-      return res.json({ status: false, message: "User already exists" });
+      return res.status(400).json({ status: false, message: "User already exists" });
     }
 
     // Hash password
@@ -26,16 +28,17 @@ export const registerUser = async (req, res) => {
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET_KEY,
+      { expiresIn: '1d' }
     );
 
-    res.json({
+    res.status(201).json({
       status: true,
       message: "User registered successfully",
       token: token,
     });
   } catch (error) {
-    console.error(error);
-    res.json({ error: error.message });
+    console.log(error);
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -45,19 +48,20 @@ export const loginUser = async (req, res) => {
     // Find user by email
     const user = await userModel.findOne({ email: req.body.email });
     if (!user) {
-      return res.json({ status: false, message: "User not found" });
+      return res.status(404).json({ status: false, message: "User not found" });
     }
 
     // Compare password with hash
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
-      return res.json({ status: false, message: "Invalid password" });
+      return res.status(401).json({ status: false, message: "Invalid password" });
     }
 
     // Generate JWT token
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET_KEY,
+      { expiresIn: '1d' }
     );
 
     res.json({
@@ -67,7 +71,7 @@ export const loginUser = async (req, res) => {
       user: { name: user.name, email: user.email },
     });
   } catch (error) {
-    console.error(error);
-    res.json({ error: error.message });
+    console.log(error);
+    res.status(500).json({ error: error.message });
   }
 };

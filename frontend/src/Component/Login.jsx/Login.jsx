@@ -5,6 +5,8 @@ import { useContext } from 'react';
 
 function Login() {
     const { setRegisterShow, switchLoginShow, setSwitchLoginShow, registerHandler,registerhandlerChanges } = useContext(StoreContextCreated);
+
+    
     return (
         <div className='registration'>
 

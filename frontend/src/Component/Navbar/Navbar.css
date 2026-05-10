@@ -5,6 +5,7 @@
     margin-top:20px;
     box-shadow: 10px 10px 50px black;
     border-radius: 10px;
+    height: 80px;
     
 }
 
@@ -40,11 +41,52 @@
     cursor: pointer;  
 }
 .LoginRegisterButton button:hover{
-    background-color:cyan;
+    background-color:lightgreen
 }
 
 .loginImage{
-    width: 95px;
+    width:70px;
+    transition: opacity 0.4s ease;
     margin-right: 20px;
 }
 
+
+#logout{
+    width: 70px;
+    cursor: pointer;
+}
+
+.hover-container{
+    position: relative;
+  display: inline-block;
+}
+
+.logoutButton {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  width: 70px;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 1s ease, transform 0.2s ease;
+}
+
+.hover-container:hover .loginImage {
+  opacity: 0;
+}
+
+.hover-container:hover .logoutButton {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1.05);
+}
+
+.logoutButton:hover {
+  background-color: #e60000;
+}

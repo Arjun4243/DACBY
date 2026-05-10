@@ -14,7 +14,7 @@ export const StoreContextProvider = ({ children }) => {
     const [globalNotificationShow, setGlobalNotificationShow] = useState({
         show: false,
         headline: "",
-        image: "/image/green right.gif",
+        image: "f",
         message: ""
     });
     //GlobalNotification handler up
@@ -43,7 +43,7 @@ export const StoreContextProvider = ({ children }) => {
         }));
 
     }, [])
-
+ 
     const registerHandler = useCallback(async (e) => {
         e.preventDefault();
 
@@ -73,6 +73,7 @@ export const StoreContextProvider = ({ children }) => {
                     image: "",
                     message: ""
                 });
+                window.location.reload();
             }, 3000);
         } else {
             setGlobalNotificationShow({
@@ -89,15 +90,48 @@ export const StoreContextProvider = ({ children }) => {
                     image: "",
                     message: ""
                 });
+                
             }, 3000)
         }
 
 
 
         console.log("register form data", RegisterFormData);
-    }, [RegisterFormData])
+    }, [RegisterFormData, switchLoginShow])
     //register form data handler up
 
+
+
+
+
+
+
+    //logout functionality down
+
+    const logouthandler=useCallback(()=>{
+        localStorage.removeItem("token");
+        setGlobalNotificationShow({
+            show: true,
+            headline: "Logout",
+            image: "/image/green right.gif",
+            message: "Logout Successfully"
+        });
+
+        setTimeout(()=>{
+            setGlobalNotificationShow({
+                show: false,
+                headline: "",
+                image: "",
+                message: ""
+            });
+
+            window.location.reload();
+        }, 3000);
+
+    })
+
+
+    //logout functionality up
 
 
 
@@ -122,6 +156,8 @@ export const StoreContextProvider = ({ children }) => {
         globalNotificationShow,
         setGlobalNotificationShow,
 
+        //logout handler
+        logouthandler,
 
     }
 

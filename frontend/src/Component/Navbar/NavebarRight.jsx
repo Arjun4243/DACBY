@@ -4,11 +4,27 @@ import { useContext } from 'react';
 import { StoreContextCreated } from '../../StoreContext';
 
 function NavebarRight() {
-  const {setRegisterShow} = useContext(StoreContextCreated);
+
+
+  const { setRegisterShow , logouthandler} = useContext(StoreContextCreated);
+
+  const token = localStorage.getItem("token");
   return (
     <div className='LoginRegisterButton'>
-        <img src="/image/login.png" alt="Login" className='loginImage'/>
-        <button onClick={() => setRegisterShow(true)}>Register</button>
+      <img src="/image/login.png" alt="Login" className='loginImage' />
+      {token ? (
+        <div className='hover-container'>
+          <img
+            src="/image/Login image.webp"
+            alt="login image"
+            className="loginImage"
+          />
+          <button className='logoutButton' onClick={logouthandler}>
+            Logout
+          </button>
+        </div>
+
+      ) : (<button onClick={() => setRegisterShow(true)}>Register</button>)}
     </div>
   )
 }

@@ -1,5 +1,7 @@
 
+
 import { createContext, useState, useCallback } from "react";
+
 
 
 export const StoreContextCreated = createContext();
@@ -45,7 +47,7 @@ export const StoreContextProvider = ({ children }) => {
     const registerHandler = useCallback(async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`${url}/api/user/register`, {
+        const response = await fetch(`${url}/api/user/${switchLoginShow}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(RegisterFormData)

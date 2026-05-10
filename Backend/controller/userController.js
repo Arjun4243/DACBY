@@ -56,13 +56,23 @@ export const loginUser = async (req, res) => {
     // Find user by email
     const user = await userModel.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(404).json({ status: false, message: "User not found" });
+      return res.status(404).json({ 
+        status: false, 
+        notificationShow: true,
+        headline: "Login failed",
+        image: "/image/registraction_cross.webp",
+        message: "User not found" });
     }
 
     // Compare password with hash
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ status: false, message: "Invalid password" });
+      return res.status(401).json({ 
+        status: false, 
+        notificationShow: true,
+        headline: "Login failed",
+        image: "/image/registraction_cross.webp",
+        message: "Invalid password" });
     }
 
     // Generate JWT token
@@ -74,6 +84,9 @@ export const loginUser = async (req, res) => {
 
     res.json({
       status: true,
+      notificationShow: true,
+      headline: "Login successful",
+      image: "/image/green right.gif",
       message: "Login successful",
       token: token,
       user: { name: user.name, email: user.email },

@@ -33,7 +33,9 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({
       status: true,
-      message: "User registered successfully",
+      headline: "Registration successful",
+      image: "/image/green right.gif",
+      message: "You have been registered successfully!",
       token: token,
     });
   } catch (error) {

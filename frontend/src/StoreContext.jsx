@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback, use } from "react";
+import { createContext, useState, useCallback } from "react";
 
 export const StoreContextCreated = createContext();
 
@@ -6,23 +6,32 @@ export const StoreContextProvider = ({ children }) => {
 
     const url = "http://localhost:3000"
 
+    //GlobalNotification handler down
+    const [globalNotificationShow, setGlobalNotificationShow] = useState({
+        show: true,
+        headline: "",
+        image: "/image/green right.gif",
+        message: ""
+    });
+    //GlobalNotification handler up
+
     const [registerShow, setRegisterShow] = useState(false);
     const [switchLoginShow, setSwitchLoginShow] = useState("Register");
 
 
 
 
-    //register form data handler 
+    //register form data handler down
     const [RegisterFormData, setRegisterFormData] = useState({
         name: "",
         email: "",
         password: ""
     })
 
-    const registerhandlerChanges=useCallback((e) => {
+    const registerhandlerChanges = useCallback((e) => {
         e.preventDefault();
 
-         const { name, value } = e.target
+        const { name, value } = e.target
 
         setRegisterFormData(prevState => ({
             ...prevState,
@@ -31,22 +40,46 @@ export const StoreContextProvider = ({ children }) => {
 
     }, [])
 
-    const registerHandler = useCallback(async(e) => {
+    const registerHandler = useCallback(async (e) => {
         e.preventDefault();
-   
 
         const response = await fetch(`${url}/api/user/register`, {
             method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(RegisterFormData)
-        })
+        });
 
-        console.log("response", response);
+        // Parse the JSON body into a JS object
+        const data = await response.json();
+
+      if (data.status === true) {
+  setGlobalNotificationShow({
+    show: true,
+    headline: data.headline,
+    image: data.image,
+    message: data.message
+  });
+
+  setTimeout(() => {
+    setGlobalNotificationShow({
+      show: false,
+      headline: "",
+      image: "",
+      message: ""
+    });
+  }, 3000);
+}
+
+
+
+
+
+
 
         console.log("register form data", RegisterFormData);
     }, [RegisterFormData])
+    //register form data handler up
+
 
 
 
@@ -65,7 +98,12 @@ export const StoreContextProvider = ({ children }) => {
 
 
         //url
-        url
+        url,
+
+        //GlobalNotification handler
+        globalNotificationShow,
+        setGlobalNotificationShow,
+
 
     }
 

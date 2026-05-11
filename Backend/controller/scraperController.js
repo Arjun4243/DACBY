@@ -18,7 +18,13 @@ export const scrapeStories = async()=>{
         const postedAt = new Date();
 
         if (title && url) {
-            stories.push({ title, url, points, author, postedAt });
+            
+            stories.push({ 
+                title, 
+                url, 
+                points, 
+                author, 
+                postedAt });
         }
     });
 

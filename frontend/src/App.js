@@ -13,6 +13,7 @@ function App() {
   const {registerShow} = useContext(StoreContextCreated);
 
   return (
+    <>
     <div className="App">
       
       <NavbarMain />
@@ -20,6 +21,8 @@ function App() {
       <GlobalNotification />
       <Stories/>
     </div>
+    
+    </>
   );
 }
 

@@ -1,0 +1,18 @@
+.container-0{
+    margin: 20px auto;
+    border: none;
+    width:100wh
+   
+}
+
+.container-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100wh;
+     
+}
+
+.container-2{
+    text-align: left;
+}

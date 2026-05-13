@@ -5,7 +5,7 @@ import authMiddleWare from "../middleware/authMiddleware.js"
 
 const storyRouter = express.Router();
 
-storyRouter.get("/", getStories);
+storyRouter.get("/storyGet", getStories);
 storyRouter.get("/:id", getStoryById);
 storyRouter.post("/:id/bookmark", authMiddleWare, toggleBookmark);
 

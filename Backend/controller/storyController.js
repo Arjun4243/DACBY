@@ -21,7 +21,7 @@ export const toggleBookmark = async (req, res) => {
   const userId = req.userId;
 
   if (story.bookmarkedBy.includes(userId)) {
-    story.bookmarkedBy = story.bookmarkedBy.filter(id => id.toString() !== userId);
+    story.bookmarkedBy = story.bookmarkedBy.filter(e => e.toString() !== userId);
   } else {
     story.bookmarkedBy.push(userId);
   }

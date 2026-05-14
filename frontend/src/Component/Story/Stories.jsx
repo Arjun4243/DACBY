@@ -13,15 +13,15 @@ function Stories() {
 
   return (
     <>
-      {storiesdata && storiesdata.map((story) => (
-        <div key={story._id} className="container-0">
+      {storiesdata && storiesdata.map((e) => (
+        <div key={e._id} className="container-0">
 
           <div className="container-1">
             <div className="container-2">
-              <h3>{story.title}</h3>
+              <h3>{e.title}</h3>
               <p>
                 <FaEarthAfrica className="earth-icon" />
-                {story.url}
+                {e.url}
               </p>
             </div>
             <div className="bookmark-icon">
@@ -36,15 +36,15 @@ function Stories() {
             <div className="new-details">
               <div className="like-container">
                 <AiFillLike size={25} />
-                <b>{story.points} points</b>
+                <b>{e.points} points</b>
                 <IoIosTime size={25} />
-                <b>{new Date(story.postedAt).toLocaleString()}</b>
+                <b>{new Date(e.postedAt).toLocaleString()}</b>
               </div>
             </div>
 
             <div className="author">
               <FaBook size={20} />
-              <b>{story.author}</b>
+              <b>{e.author}</b>
             </div>
           </div>
         </div>

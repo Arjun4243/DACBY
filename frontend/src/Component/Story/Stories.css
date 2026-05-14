@@ -10,11 +10,13 @@
 
 .container-2 h3{
     color: lightseagreen;
+    justify-self: start;
 }
 
 .container-2 p{
     color:grey;
     font-size: medium;
+    justify-self: start;
 }
 
 .container-1{
@@ -51,6 +53,11 @@
 .author{
     display: flex;
     align-items: center;;
+}
+
+.author b{
+    margin-left:10px;
+    margin-right: 20px;
 }
 
 

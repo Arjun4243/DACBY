@@ -169,6 +169,42 @@ useEffect(() => {
 
 
 
+
+
+
+
+
+    
+    //getSingleStory down
+
+  const [singleStory, setSingleStory] = useState({
+    id: "",
+    title: "",
+    url: "",
+    points: "",
+    author: "",
+    postedAt: ""
+  });
+
+    const handleSingleStory =useCallback(async(id)=>{
+        
+        const response = await fetch(`${url}/api/story/${id}`,)
+        const data = await response.json()
+
+        setSingleStory({
+            id: data._id,
+            title: data.title,
+            url: data.url,
+            points: data.points,
+            author: data.author,
+            postedAt: data.postedAt
+        })
+
+    })
+    //getSingleStory up
+
+
+
     const contextValue = {
         registerShow,
         setRegisterShow,
@@ -192,8 +228,16 @@ useEffect(() => {
 
         //logout handler
         logouthandler,
+        
 
+        //fatch all storeis
         storiesdata,
+
+        //singlestory
+        singleStory,
+        handleSingleStory
+
+
 
     }
 

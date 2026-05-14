@@ -21,15 +21,16 @@ function App() {
       <NavbarMain />
       {registerShow?<Login/>:null}
       <GlobalNotification />
+      <SingleStories/>
       
         <Router>
           <Routes>
-            <Route path="/" element={<Stories />} />
-            <Route path="/stories/:id" element={<Stories />} />
-            
+            {/* <Route path="/" element={<Stories />} /> */}
+            {/* <Route path="/stories/:id" element={<Stories />} /> */}
+           
           </Routes>
         </Router>
-      
+       
     </div>
     
     </>

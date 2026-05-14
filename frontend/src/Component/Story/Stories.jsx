@@ -9,12 +9,12 @@ import { useContext } from "react";
 import { StoreContextCreated } from "../../StoreContext";
 
 function Stories() {
-  const { storiesdata } = useContext(StoreContextCreated);
+  const { storiesdata,handleSingleStory } = useContext(StoreContextCreated);
 
   return (
     <>
       {storiesdata && storiesdata.map((e) => (
-        <div key={e._id} className="container-0">
+        <div key={e._id} className="container-0 onClick={()=> handleSingleStory(e._id))}">
 
           <div className="container-1">
             <div className="container-2">

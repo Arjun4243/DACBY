@@ -1,6 +1,6 @@
 
 
-import { createContext, useState, useCallback } from "react";
+import { createContext, useState, useCallback, useEffect } from "react";
 
 
 
@@ -134,6 +134,40 @@ export const StoreContextProvider = ({ children }) => {
     //logout functionality up
 
 
+    // get stories from backed down
+
+    const [storiesdata, setStoriesdata] = useState([]);
+
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${url}/api/story/storyGet`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch stories");
+      }
+
+      const data = await response.json();
+      setStoriesdata(data)
+      console.log("stories fetched", data);
+    } catch (error) {
+      console.error("Error fetching stories:", error);
+    }
+  };
+
+  fetchData();
+}, []); // dependency array
+
+
+    //get stories from backedn up 
+
+
 
     const contextValue = {
         registerShow,
@@ -158,6 +192,8 @@ export const StoreContextProvider = ({ children }) => {
 
         //logout handler
         logouthandler,
+
+        storiesdata,
 
     }
 

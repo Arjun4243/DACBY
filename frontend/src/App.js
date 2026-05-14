@@ -6,6 +6,8 @@ import { useContext } from 'react';
 import { StoreContextCreated } from './StoreContext.jsx';
 import GlobalNotification from './Component/GlobalNotification/GlobalNotification';
 import Stories from './Component/Story/Stories.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SingleStories from './Component/SingleStories/SingleStories.jsx';
 
 
 function App() {
@@ -19,7 +21,15 @@ function App() {
       <NavbarMain />
       {registerShow?<Login/>:null}
       <GlobalNotification />
-      <Stories/>
+      
+        <Router>
+          <Routes>
+            <Route path="/" element={<Stories />} />
+            <Route path="/stories/:id" element={<Stories />} />
+            
+          </Routes>
+        </Router>
+      
     </div>
     
     </>

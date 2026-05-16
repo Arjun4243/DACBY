@@ -26,7 +26,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Stories />} />
-            <Route path="/stories/:id" element={<SingleStories/>} />
+            <Route path="/story/:id" element={<SingleStories/>} />
           </Routes>
         </Router>
       </div>

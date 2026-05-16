@@ -200,6 +200,8 @@ useEffect(() => {
             postedAt: data.postedAt
         })
 
+        console.log("singleStory",data)
+
     })
     //getSingleStory up
 

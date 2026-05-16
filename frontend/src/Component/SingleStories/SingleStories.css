@@ -1,0 +1,15 @@
+    #close-button{
+    right:8px;    position: absolute;
+    }
+
+.container-1{
+    position: relative;
+}
+
+
+
+
+.expanded {
+  height: 500px; /* overlay style when expanded */
+}
+

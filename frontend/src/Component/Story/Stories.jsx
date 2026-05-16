@@ -7,6 +7,7 @@ import { IoIosTime } from "react-icons/io";
 import { FaBook } from "react-icons/fa";
 import { useContext } from "react";
 import { StoreContextCreated } from "../../StoreContext";
+import { Link } from "react-router-dom";
 
 function Stories() {
   const { storiesdata,handleSingleStory } = useContext(StoreContextCreated);
@@ -14,11 +15,11 @@ function Stories() {
   return (
     <>
       {storiesdata && storiesdata.map((e) => (
-        <div key={e._id} className="container-0 onClick={()=> handleSingleStory(e._id))}">
-
+        <div key={e._id} className="container-0" onClick={() => handleSingleStory(e._id)}>
+         
           <div className="container-1">
             <div className="container-2">
-              <h3>{e.title}</h3>
+               <Link to={`/story/${e._id}`}><h3>{e.title}</h3></Link>
               <p>
                 <FaEarthAfrica className="earth-icon" />
                 {e.url}
@@ -47,6 +48,7 @@ function Stories() {
               <b>{e.author}</b>
             </div>
           </div>
+          
         </div>
       ))}
     </>

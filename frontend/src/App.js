@@ -12,27 +12,25 @@ import SingleStories from './Component/SingleStories/SingleStories.jsx';
 
 function App() {
 
-  const {registerShow} = useContext(StoreContextCreated);
+  const { registerShow } = useContext(StoreContextCreated);
 
   return (
     <>
-    <div className="App">
-      
-      <NavbarMain />
-      {registerShow?<Login/>:null}
-      <GlobalNotification />
-      <SingleStories/>
-      
+      <div className="App">
+
+        <NavbarMain />
+        {registerShow ? <Login /> : null}
+        <GlobalNotification />
+
+
         <Router>
           <Routes>
-            {/* <Route path="/" element={<Stories />} /> */}
-            {/* <Route path="/stories/:id" element={<Stories />} /> */}
-           
+            <Route path="/" element={<Stories />} />
+            <Route path="/stories/:id" element={<SingleStories/>} />
           </Routes>
         </Router>
-       
-    </div>
-    
+      </div>
+
     </>
   );
 }

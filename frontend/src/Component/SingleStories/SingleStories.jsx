@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { StoreContextCreated } from "../../StoreContext";
 
 
+
 function SingleStories() {
     const { storiesdata,singleStory,handleSingleStory } = useContext(StoreContextCreated);
 

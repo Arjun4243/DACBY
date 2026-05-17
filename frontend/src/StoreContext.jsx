@@ -17,7 +17,7 @@ export const StoreContextProvider = ({ children }) => {
         url = "http://localhost:3000";
     } else {
         // Production (Render)
-        url = "https://dacby-frontend.onrender.com";
+        url = "https://dacby-10-00.onrender.com";
     }
 
 

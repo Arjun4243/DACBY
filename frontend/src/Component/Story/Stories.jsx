@@ -10,25 +10,39 @@ import { StoreContextCreated } from "../../StoreContext";
 import { Link } from "react-router-dom";
 
 function Stories() {
-  const { storiesdata,handleSingleStory } = useContext(StoreContextCreated);
+  const { storiesdata, handleSingleStory, togglehandler, currentUserId } = useContext(StoreContextCreated);
+
+
 
   return (
     <>
       {storiesdata && storiesdata.map((e) => (
         <div key={e._id} className="container-0" onClick={() => handleSingleStory(e._id)}>
-         
+
           <div className="container-1">
             <div className="container-2">
-               <Link to={`/story/${e._id}`}><h3>{e.title}</h3></Link>
+              <Link to={`/story/${e._id}`}><h3>{e.title}</h3></Link>
               <p>
                 <FaEarthAfrica className="earth-icon" />
                 {e.url}
               </p>
             </div>
+
             <div className="bookmark-icon">
-              <FaRegBookmark size={28} />
-              <FcBookmark size={40} />
+              {Array.isArray(e.bookmarkedBy) && e.bookmarkedBy.includes(currentUserId) ? (
+                <FcBookmark
+                  size={40}
+                  onClick={(ev) => { ev.stopPropagation(); togglehandler(e._id); }}
+                />
+              ) : (
+                <FaRegBookmark
+                  size={28}
+                  onClick={(ev) => { ev.stopPropagation(); togglehandler(e._id); }}
+                />
+              )}
             </div>
+
+            
           </div>
 
           <hr />
@@ -48,7 +62,7 @@ function Stories() {
               <b>{e.author}</b>
             </div>
           </div>
-          
+
         </div>
       ))}
     </>

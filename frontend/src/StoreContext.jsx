@@ -1,6 +1,9 @@
 
 
 import { createContext, useState, useCallback, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+
+
 
 
 
@@ -206,6 +209,49 @@ useEffect(() => {
     //getSingleStory up
 
 
+    //bookmark functionality down
+    
+    const toke = localStorage.getItem("token");
+
+    const togglehandler=useCallback(async(storyid)=>{
+        const response=await fetch(`${url}/api/story/${storyid}/bookmark`,
+         {
+          method: "POST",
+          headers:{
+            "content-type":"application/json",
+            "Authorization":`Bearer ${toke}`
+          }
+ 
+         }          
+        )
+        const data=await response.json()
+
+        setStoriesdata(old => old.map(e=> e._id===storyid? {...e,bookmarkedBy
+:data.bookmarkedBy}:e))
+
+        
+    })
+
+ 
+    const [currentUserId, setCurrentUserId] = useState(null);
+
+    useEffect(() => {
+        const token=localStorage.getItem("token")
+        if(token){
+            const decodedToken=jwtDecode(token)
+            setCurrentUserId(decodedToken.userId)
+        }
+
+       console.log("currentUserId",currentUserId)
+    })
+
+    
+
+
+    //bookmark functionality up 
+
+
+
 
     const contextValue = {
         registerShow,
@@ -237,7 +283,13 @@ useEffect(() => {
 
         //singlestory
         singleStory,
-        handleSingleStory
+        handleSingleStory,
+
+        //toggle
+        togglehandler,
+
+        //currentuser
+        currentUserId
 
 
 

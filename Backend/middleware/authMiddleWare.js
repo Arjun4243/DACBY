@@ -12,11 +12,11 @@ const authMiddleWare = (req, res, next) => {
             NotificationShow:true,
             Headline:"Unauthorized",
             Image:"/image/registraction_cross.webp",
-            Message:"Please login to access this resource"
+            Message:"Please login to Bookmark "
         })
         } else {
             try{
-                const token = authHeader.split(" ")[1]
+                const token = authHeader.split(" ")[1] //this line convert string to array that i sperated with the help of space and i give access only 1 elment no the 0
                 const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
 
                 req.userId=decoded.userId

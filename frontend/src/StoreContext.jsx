@@ -11,16 +11,15 @@ export const StoreContextCreated = createContext();
 
 export const StoreContextProvider = ({ children }) => {
 
+    let url;
     if (window.location.hostname === "localhost") {
-  // Local development
-  return url = "http://localhost:3000";
-} else {
-  // Production (Render)
-  return url = "https://dacby-frontend.onrender.com";
-  
-}
+        // Local development
+        url = "http://localhost:3000";
+    } else {
+        // Production (Render)
+        url = "https://dacby-frontend.onrender.com";
+    }
 
-    const url = "http://localhost:3000"
 
     //GlobalNotification handler down
     const [globalNotificationShow, setGlobalNotificationShow] = useState({

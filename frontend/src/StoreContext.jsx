@@ -211,26 +211,28 @@ useEffect(() => {
 
     //bookmark functionality down
     
-    const toke = localStorage.getItem("token");
-
     const togglehandler=useCallback(async(storyid)=>{
-        const response=await fetch(`${url}/api/story/${storyid}/bookmark`,
+        const token = localStorage.getItem("token");
+        const response = await fetch(`${url}/api/story/${storyid}/bookmark`,
          {
           method: "POST",
           headers:{
             "content-type":"application/json",
-            "Authorization":`Bearer ${toke}`
+            "Authorization":`Bearer ${token}`
           }
  
          }          
         )
         const data=await response.json()
 
-        setStoriesdata(old => old.map(e=> e._id===storyid? {...e,bookmarkedBy
-:data.bookmarkedBy}:e))
+        if (data.story) {
+            setStoriesdata(old => old.map(e => 
+                e._id === storyid ? { ...e, bookmarkedBy: data.story.bookmarkedBy } : e
+            ));
+        }
 
         
-    })
+    }, [url])
 
  
     const [currentUserId, setCurrentUserId] = useState(null);
@@ -243,7 +245,7 @@ useEffect(() => {
         }
 
        console.log("currentUserId",currentUserId)
-    })
+    }, [])
 
     
 

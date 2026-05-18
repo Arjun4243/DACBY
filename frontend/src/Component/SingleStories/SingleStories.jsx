@@ -28,10 +28,17 @@ function SingleStories() {
     return (
         <>
 
-            <div  className={`container-0 ${expanded ? "expanded" : ""}`}onClick={()=>(handleToggleHeight())}>
+            <div className={`container-0 ${expanded ? "expanded" : ""}`} onClick={() => (handleToggleHeight())}>
 
                 <div className="container-1">
-                    <FaWindowClose size={28} id="close-button" onClick={()=>(navigate(-1))} />
+                    <FaWindowClose 
+                        size={28} 
+                        id="close-button" 
+                        onClick={(e) => {
+                            e.stopPropagation(); 
+                            navigate(-1);
+                        }} 
+                    />
                     <div className="container-2">
                         <h3>{singleStory.title}</h3>
                     
@@ -51,11 +58,24 @@ function SingleStories() {
                 <iframe
                 src={singleStory.url}
                 title="Story Website"
-        title="Story Website"
-        height="500px"
-        width="100%"
+                height="500px"
+                width="100%"
                 ></iframe>
-                <hr />
+                
+                <div className="iframe-fallback" style={{ 
+                    textAlign: 'center', 
+                    padding: '20px', 
+                    background: '#f8f9fa',
+                    borderTop: '1px solid #ddd' 
+                }}>
+                    <p>Some websites prevent their content from being displayed here.</p>
+                    <button 
+                        onClick={(e) => { e.stopPropagation(); window.open(singleStory.url, "_blank", "noopener,noreferrer"); }}
+                        style={{ padding: '10px 20px', cursor: 'pointer', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px' }}
+                    >
+                        View Original Website
+                    </button>
+                </div>
 
                 <div className="container-3">
                     <div className="new-details">
